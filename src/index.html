@@ -7,6 +7,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Fullstack-разработчик: Django, FastAPI, Angular, ClickHouse. Веб-сайты, API, телеграм-боты и автоматизация под ключ.">
   <meta name="theme-color" content="#070b14">
+  <script>
+    // Определяем тему до отрисовки (localStorage > системная), чтобы не было вспышки.
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var theme =
+          saved === 'light' || saved === 'dark'
+            ? saved
+            : window.matchMedia('(prefers-color-scheme: light)').matches
+              ? 'light'
+              : 'dark';
+        document.documentElement.dataset.theme = theme;
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', theme === 'dark' ? '#070b14' : '#f6f8fc');
+      } catch (e) {}
+    })();
+  </script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="canonical" href="https://code-orbit.ru/">
 

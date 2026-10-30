@@ -14,14 +14,22 @@ export interface ChatMessagesResponse {
   messages: ChatMessage[];
 }
 
+export interface ChatSendPayload {
+  uid?: string;
+  text: string;
+  name?: string;
+  contact?: string;
+  smart_token?: string;
+}
+
 /** Chat widget: send visitor messages and poll the session's messages. */
 @Injectable({ providedIn: 'root' })
 export class ChatService {
   private readonly http = inject(HttpClient);
   private readonly base = `${environment.apiUrl}/chat`;
 
-  send(uid: string | null, text: string) {
-    return this.http.post<ChatSendResponse>(`${this.base}/messages/`, { uid: uid || undefined, text });
+  send(payload: ChatSendPayload) {
+    return this.http.post<ChatSendResponse>(`${this.base}/messages/`, payload);
   }
 
   messages(uid: string) {

@@ -244,8 +244,108 @@
   cursor: not-allowed;
 }
 
+/* Всплывающая подсказка «напиши мне» */
+.cw-popup {
+  position: fixed;
+  right: 5.25rem;
+  bottom: 2.1rem;
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 12px 34px -12px rgba(0, 0, 0, 0.5);
+  animation: cw-popup-in 0.3s ease;
+}
+
+.cw-popup-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 3px color-mix(in srgb, #22c55e 20%, transparent);
+}
+
+@keyframes cw-popup-in {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Форма «представьтесь» перед началом чата */
+.cw-intro {
+  margin: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.cw-intro-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.cw-intro-text {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 0.25rem;
+}
+
+.cw-intro .cw-input {
+  flex: none;
+  width: 100%;
+}
+
+.cw-intro-btn {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 0.7rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--accent-contrast);
+  background: linear-gradient(130deg, var(--accent), var(--accent-2));
+}
+
+.cw-intro-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Ошибка отправки */
+.cw-error {
+  padding: 0.6rem 0.9rem;
+  border-top: 1px solid var(--border);
+  background: color-mix(in srgb, var(--danger) 12%, var(--surface));
+  color: var(--danger);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cw-panel {
+    animation: none;
+  }
+  .cw-popup {
     animation: none;
   }
 }

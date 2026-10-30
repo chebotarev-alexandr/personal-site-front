@@ -59,6 +59,7 @@
 /* Планета со спутниками */
 .hero-visual {
   position: relative;
+  will-change: transform;
 }
 
 .orbit-scene {

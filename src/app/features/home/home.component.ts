@@ -9,6 +9,7 @@ import { ServiceCardComponent } from '../../shared/components/service-card/servi
 import { ProjectCardComponent } from '../../shared/components/project-card/project-card.component';
 import { TestimonialCarouselComponent } from '../../shared/components/testimonial-carousel/testimonial-carousel.component';
 import { RevealDirective } from '../../shared/directives/reveal.directive';
+import { ParallaxDirective } from '../../shared/directives/parallax.directive';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,7 @@ import { RevealDirective } from '../../shared/directives/reveal.directive';
     ProjectCardComponent,
     TestimonialCarouselComponent,
     RevealDirective,
+    ParallaxDirective,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

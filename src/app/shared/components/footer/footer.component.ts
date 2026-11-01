@@ -19,6 +19,7 @@ export class FooterComponent {
   readonly year = new Date().getFullYear();
 
   readonly settings = computed(() => this.content.site.value()?.settings);
+  readonly logo = computed(() => this.content.site.value()?.settings?.logo ?? null);
   readonly socials = computed(() => this.content.site.value()?.socials ?? []);
   readonly services = computed(() => this.content.servicesList().slice(0, 6));
 

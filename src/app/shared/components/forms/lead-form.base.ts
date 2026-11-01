@@ -106,6 +106,7 @@ export abstract class LeadFormBase {
     const control = this.form.get(name);
     if (control && control.touched && control.invalid) {
       if (control.errors?.['required']) return 'Обязательное поле';
+      if (control.errors?.['requiredTrue']) return 'Необходимо согласие на обработку персональных данных';
       if (control.errors?.['email']) return 'Некорректный email';
       if (control.errors?.['phone']) return 'Некорректный номер';
     }

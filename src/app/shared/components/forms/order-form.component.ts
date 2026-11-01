@@ -59,6 +59,14 @@ import { LeadFormBase } from './lead-form.base';
           <div class="form-alert">{{ errorMessage() }}</div>
         }
 
+        <label class="consent">
+          <input type="checkbox" formControlName="consent" />
+          <span>Я даю <a href="/consent/" target="_blank" rel="noopener">согласие на обработку персональных данных</a></span>
+        </label>
+        @if (error('consent')) {
+          <span class="field-error">{{ error('consent') }}</span>
+        }
+
         <div class="form-actions">
           <button class="btn btn-primary" type="submit" [disabled]="submitting()">
             {{ submitting() ? 'Отправка…' : 'Заказать услугу' }}
@@ -82,6 +90,7 @@ export class OrderFormComponent extends LeadFormBase {
     email: ['', Validators.email],
     service: [null as string | null],
     message: [''],
+    consent: [false, Validators.requiredTrue],
   });
 
   constructor() {

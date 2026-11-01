@@ -3,7 +3,11 @@
     <div class="footer-grid">
       <div class="footer-col footer-about">
         <a class="footer-brand" routerLink="/">
-          <app-logo-mark />
+          @if (logo()) {
+            <img class="footer-logo" [src]="logo()" [alt]="settings()?.site_name ?? ''" />
+          } @else {
+            <app-logo-mark />
+          }
           <span>{{ settings()?.site_name }}</span>
         </a>
         <p class="footer-desc">{{ settings()?.footer_description }}</p>
@@ -56,6 +60,7 @@
 
     <div class="footer-bottom">
       <span>{{ settings()?.copyright_text }}</span>
+      <a href="/privacy/" class="footer-privacy">Политика обработки персональных данных</a>
       <span class="footer-muted">Работаю удалённо · {{ settings()?.city }}</span>
     </div>
   </div>

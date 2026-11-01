@@ -240,6 +240,7 @@ export interface ContactPayload {
   email: string;
   phone?: string;
   message?: string;
+  consent: boolean;
   smart_token?: string;
 }
 
@@ -247,6 +248,7 @@ export interface CallbackPayload {
   name: string;
   phone: string;
   message?: string;
+  consent: boolean;
   smart_token?: string;
 }
 
@@ -256,6 +258,7 @@ export interface OrderPayload {
   email?: string;
   service?: string;
   message?: string;
+  consent: boolean;
   smart_token?: string;
 }
 
@@ -268,6 +271,7 @@ export interface BriefPayload {
   budget?: number | null;
   deadline?: string;
   message?: string;
+  consent: boolean;
   smart_token?: string;
 }
 
@@ -275,10 +279,12 @@ export interface ConsultationPayload {
   name: string;
   phone: string;
   message?: string;
+  consent: boolean;
   smart_token?: string;
 }
 
 export interface SubscribePayload {
   email: string;
+  consent: boolean;
   smart_token?: string;
 }

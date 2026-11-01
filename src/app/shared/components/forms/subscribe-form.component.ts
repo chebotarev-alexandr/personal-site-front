@@ -30,6 +30,13 @@ import { LeadFormBase } from './lead-form.base';
         @if (error('email')) {
           <span class="field-error">{{ error('email') }}</span>
         }
+        <label class="consent">
+          <input type="checkbox" formControlName="consent" />
+          <span>Я даю <a href="/consent/" target="_blank" rel="noopener">согласие на обработку персональных данных</a></span>
+        </label>
+        @if (error('consent')) {
+          <span class="field-error">{{ error('consent') }}</span>
+        }
       }
     </form>
   `,
@@ -58,6 +65,7 @@ export class SubscribeFormComponent extends LeadFormBase {
 
   override readonly form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
+    consent: [false, Validators.requiredTrue],
   });
 
   protected override send() {

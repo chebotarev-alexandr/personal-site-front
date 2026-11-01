@@ -52,6 +52,7 @@ export class ChatWidgetComponent implements OnDestroy {
 
   readonly name = signal('');
   readonly contact = signal('');
+  readonly consent = signal(false);
   readonly needsInfo = signal(true);
   readonly errorMessage = signal<string | null>(null);
 
@@ -114,10 +115,14 @@ export class ChatWidgetComponent implements OnDestroy {
     this.ensureAudio();
   }
 
-  /** Сохраняет имя (обязательно) и контакт (опционально) перед началом чата. */
+  /** Сохраняет имя (обязательно), контакт (опционально) и согласие перед началом чата. */
   submitInfo(): void {
     const name = this.name().trim();
     if (!name) return;
+    if (!this.consent()) {
+      this.errorMessage.set('Необходимо согласие на обработку персональных данных.');
+      return;
+    }
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem(NAME_KEY, name);
       if (this.contact().trim()) {
@@ -127,6 +132,7 @@ export class ChatWidgetComponent implements OnDestroy {
     this.name.set(name);
     this.contact.set(this.contact().trim());
     this.needsInfo.set(false);
+    this.errorMessage.set(null);
     this.ensureAudio();
   }
 
@@ -170,11 +176,14 @@ export class ChatWidgetComponent implements OnDestroy {
       text: string;
       name?: string;
       contact?: string;
+      consent?: boolean;
       smart_token?: string;
     } = { text };
     if (this.uid()) payload.uid = this.uid()!;
     if (this.name()) payload.name = this.name();
     if (this.contact()) payload.contact = this.contact();
+    // Согласие передаём при первом сообщении (создании сессии).
+    if (!this.uid() && this.consent()) payload.consent = true;
     const token = this.smartToken();
     if (token) payload.smart_token = token;
     return firstValueFrom(this.chat.send(payload));

@@ -69,6 +69,13 @@
               [ngModel]="contact()"
               (ngModelChange)="contact.set($event)"
             />
+            <label class="cw-consent">
+              <input type="checkbox" [ngModel]="consent()" (ngModelChange)="consent.set($event)" />
+              <span>Я даю <a href="/consent/" target="_blank" rel="noopener">согласие на обработку персональных данных</a></span>
+            </label>
+            @if (errorMessage()) {
+              <div class="cw-error">{{ errorMessage() }}</div>
+            }
             <button class="cw-intro-btn" type="submit" [disabled]="!name().trim()">Начать чат</button>
           </form>
         } @else {

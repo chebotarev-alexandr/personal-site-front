@@ -331,6 +331,33 @@
   cursor: not-allowed;
 }
 
+/* Согласие на обработку ПД */
+.cw-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.cw-consent input[type='checkbox'] {
+  margin-top: 0.15rem;
+  flex: none;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.cw-consent a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.cw-consent a:hover {
+  text-decoration: underline;
+}
+
 /* Ошибка отправки */
 .cw-error {
   padding: 0.6rem 0.9rem;

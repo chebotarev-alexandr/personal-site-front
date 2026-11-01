@@ -54,6 +54,7 @@
             <input
               class="cw-input"
               type="text"
+              name="chat-name"
               placeholder="Ваше имя *"
               maxlength="120"
               autocomplete="name"
@@ -63,6 +64,7 @@
             <input
               class="cw-input"
               type="text"
+              name="chat-contact"
               placeholder="Телефон, email или Telegram (необязательно)"
               maxlength="255"
               autocomplete="off"
@@ -70,7 +72,7 @@
               (ngModelChange)="contact.set($event)"
             />
             <label class="cw-consent">
-              <input type="checkbox" [ngModel]="consent()" (ngModelChange)="consent.set($event)" />
+              <input type="checkbox" [checked]="consent()" (change)="consent.set($any($event.target).checked)" />
               <span>Я даю <a href="/consent/" target="_blank" rel="noopener">согласие на обработку персональных данных</a></span>
             </label>
             @if (errorMessage()) {
@@ -98,6 +100,7 @@
           <input
             class="cw-input"
             type="text"
+            name="chat-draft"
             placeholder="Ваше сообщение…"
             maxlength="2000"
             autocomplete="off"
